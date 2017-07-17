@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>和润心理</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <div id="index">
+        <div class="banner">
+            <div class="left">
+                <div class="imgbox"><img src="./img/atm.jpg"></div>
+                <p class="username">黑色摩天轮</p>
+            </div>
+            <div class="right">
+                <h1>42</h1>
+                <p>当前积分</p>
+            </div>
+        </div>
+        <!--扫码列表盒子  -->
+        <div class="listbox">
+            <ul>
+                <li v-for="n in 10">
+                    <div class="imgbox"><img src="./img/atm.jpg"></div>
+                    <div class="words">
+                        <p>xxx通过扫描你的二维码加入了和润心里，你获得了xx积分</p>
+                        <p class="datetime">2017-7-17 14:44</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--课程列表  -->
+        <div class="exchangeList">
+            <div class="title">
+                <em>积分兑换</em>
+                <a href="javascript:;">兑换记录</a>
+            </div>
+            <ul>
+                <li v-for="n in 5">
+                    <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
+                    <div class="words">
+                        <p class="projectName">心理课程</p>
+                        <p class="integral"><em>50</em>积分</p>
+
+                    </div>
+                    <button class="exchangeBtn" type="button">兑 换</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>

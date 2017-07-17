@@ -1,0 +1,240 @@
+@import './reset';
+#index {
+    .banner {
+        $height: 200px; //banner总高
+        $head-height: 80px; //头像宽高和中线高度
+        overflow: hidden;
+        width: 100%;
+        height: $height;
+        background: url("../img/bg1.png") no-repeat center center/ cover;
+        .left,
+        .right {
+            width: 50%;
+            height: 100%;
+            float: left; // @include flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .imgbox {
+                position: absolute;
+                top: ($height - $head-height - 21px)/2;
+                left: calc(50% - (#{$head-height} / 2));
+                width: $head-height;
+                height: $head-height;
+                border-radius: 50%;
+                overflow: hidden;
+                background: url('../img/defaulthead.png') no-repeat center center/ cover;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            h1 {
+                position: absolute;
+                top: 54px;
+                width: 100%;
+                color: #fff;
+                font-size: 54px;
+                text-align: center;
+                font-weight: lighter;
+            }
+            p {
+                position: absolute;
+                color: #fff;
+                font-size: 16px;
+                width: 100%;
+                text-align: center;
+                bottom: 54px;
+                &.username {
+                    bottom: $height/4 - 5px;
+                }
+            }
+        }
+        .left:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: ($height - $head-height)/2;
+            height: $head-height;
+            width: 1px;
+            background: #C7C0B0;
+        }
+    } //列表
+    .listbox {
+        width: 92%;
+        background: #f5f5f5;
+        margin: 15px auto;
+        height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        ul {
+            padding: 10px;
+            li {
+                $img: 60px;
+                margin-bottom: 15px;
+                height: 60px;
+                .imgbox {
+                    width: $img;
+                    height: $img;
+                    float: left;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                .words {
+                    height: $img;
+                    width: calc(100% - #{$img} - 5px);
+                    margin-left: 5px;
+                    float: right;
+                    p {
+                        font-size: 13px;
+                        margin-bottom: 5px;
+                    }
+                    .datetime {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    } // 课程列表
+    .exchangeList {
+        width: 96%;
+        margin: 15px auto;
+        .title {
+            width: 100%;
+            height: 21px;
+            margin-bottom: 10px;
+            em {
+                float: left;
+                font-size: 16px;
+            }
+            a {
+                float: right;
+                color: $baseColor;
+            }
+        }
+        ul {
+            li {
+                $img: 80px;
+                height: $img+10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #f5f5f5;
+                .imgbox {
+                    width: $img;
+                    height: $img;
+                    float: left;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .words {
+                    height: $img;
+                    width: calc(100% - 20px - (#{$img} * 2));
+                    margin-left: 10px;
+                    float: left;
+                    .projectName {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: $fontColor;
+                    }
+                    .integral {
+                        margin-top: 10px;
+                        font-size: 13px;
+                        em {
+                            color: $baseColor;
+                            margin-right: 5px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .exchangeBtn {
+                    float: right;
+                    width: $img - 10px;
+                    height: $img - 10px;
+                    border-radius: 50%;
+                    background: $baseColor;
+                    color: #fff;
+                    text-align: center;
+                    line-height: $img - 10px;
+                    border: 0;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+// 兑换记录
+#record {
+    .recordList {
+        width: 100%;
+        li {
+            $img: 80px;
+            height: $img + 30px;
+            border-bottom: 1px solid #f5f5f5;
+            padding: 5px 10px;
+            .datetime {
+                font-size: 12px;
+                color: #666;
+            }
+            .down {
+                .imgbox {
+                    float: left;
+                    width: $img;
+                    height: $img;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .words {
+                    height: $img;
+                    width: calc(100% - 100px - #{$img});
+                    margin-left: 10px;
+                    float: left;
+                    .projectName {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: $fontColor;
+                    }
+                    .integral {
+                        font-size: 13px;
+                        margin-bottom: 4px;
+                        em {
+                            color: $baseColor;
+                            margin-right: 5px;
+                            font-size: 16px;
+                        }
+                    }
+                    .tab {
+                        width: 60px;
+                        height: 26px;
+                        display: block;
+                        background: #32b16c;
+                        color: #fff;
+                        text-align: center;
+                        line-height: 26px;
+                        &.on {
+                            background: #bfc2c0;
+                        }
+                    }
+                }
+                .code {
+                    width: 90px;
+                    float: right;
+                    p {
+                        font-size: 30px;
+                        margin-bottom: 3px;
+                    }
+                    span {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

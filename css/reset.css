@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/*盒子特性*/
+/*
+@include keyframes(move-the-object) {
+    0%   { 
+        transform: translateX(0);
+    }
+    100% { 
+        transform: translateX(200px); 
+    }
+}
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "微软雅黑", 'sans-serif';
+  -webkit-tap-highlight-color: transparent; }
+
+html {
+  min-height: 100%;
+  max-width: 640px;
+  margin: 0 auto; }
+  html body {
+    -webkit-overflow-scrolling: touch;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 14px;
+    height: 100%;
+    font-size: 14px; }
+    html body button,
+    html body input {
+      -webkit-appearance: none;
+      outline: none; }
+    html body ol,
+    html body ul {
+      list-style: none; }
+    html body a,
+    html body a:hover,
+    html body a:focus {
+      text-decoration: none;
+      color: #333;
+      outline: none; }
+    html body em,
+    html body i {
+      font-style: normal; }
+    html body header.mint-header {
+      background: #3a8af1;
+      font-size: 18px; }
+    html body .clr {
+      clear: both; }
+    html body .bgwhite {
+      background: #fff; }
+    html body .mt-progress-progress {
+      background: #3a8af1; }
+    html body .mint-header .frequency {
+      width: 26px;
+      height: 26px;
+      margin-top: 2px; }
+
+/*# sourceMappingURL=reset.css.map */

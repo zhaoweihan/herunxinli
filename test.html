@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>test</title>
+	</head>
+
+	<body>
+		test working!!!
+		<br>
+		<img id="headImg" width="100" height="100" /> <br> <br>
+		<span id="frontUserId"></span> <br>
+		<span id="nickName"></span> <br>
+		<span id="integral"></span> <br>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$(function () {
+		    var baseHttp = "/hrxl";
+            var URL = window.location.href;
+            var code = getUrlParam("code");
+            if(!code) {
+                window.location.href = baseHttp + "/weiXin/redirect.htm?redirectUri=" + URL;
+            } else {
+                $.ajax({
+                    type: "post",
+                    url: baseHttp + "/weiXin/getUserInfo",
+                    async: true,
+                    cache: false,
+                    data: {
+                        code: code,
+                        needExtraData: 1
+					},
+                    success: function(data) {
+                        console.log(data);
+
+                        if (data.responseHead.code == '40002') {
+                            // !!!这里一定要加，防止用户点了微信里面的【刷新】，而导致code验证失败
+							// 注意：微信规定，code只能用一次，所以当用户点了【刷新】后，需要【重新获取code】，但，此时的url地址上已经有了【旧的code】，所以需要先截取掉
+                            if (URL && URL.indexOf('?') > 0) {
+                                URL = URL.substr(0, URL.indexOf('?'));
+                            };
+                            window.location.href = baseHttp + "/weiXin/redirect.htm?redirectUri=" + URL;
+						} else if (data.responseHead.code = "200") {
+                            var dataInfo = data.responseBody.data;
+                            $('#headImg').attr('src', dataInfo.img);
+                            $('#frontUserId').html('前台用户id：' + dataInfo.frontUserId);
+                            $('#nickName').html('昵称：' + dataInfo.nickname);
+                            $('#integral').html('积分：' + dataInfo.integral);
+						}
+                    },
+                    timeout: 6000,
+                    error: function(xhr, error) {
+                        console.log(xhr);
+                        console.log("error：" + error);
+                    }
+                });
+            }
+        });
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+            if(r != null)
+                return decodeURIComponent(r[2]);
+            return null; // 返回参数值
+        }
+	</script>
+
+</html>
