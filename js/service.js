@@ -54,7 +54,7 @@
                 success: function (data) {
                     var code = Number(data.responseHead.code);
                     if (code == 200) {
-                        defaults.success(data.responseBody.data);
+                        defaults.success(data.responseBody);
                     } else if (code < 60000 && code >= 50000) { //业务级别错误
                         // 请求加固失效 需要重新登录
                         if (code == 50000) {

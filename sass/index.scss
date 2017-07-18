@@ -1,5 +1,21 @@
 @import './reset';
 #index {
+    .loadmore{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background:#fff;
+        z-index: 100;
+        @include flex;
+        @include transform(scale(1));
+        @include transition(all .3); 
+        align-items: center;
+        opacity: 1;
+        &.close{
+            @include transform(scale(0)); 
+            opacity: 0;
+        }
+    }
     .banner {
         $height: 200px; //banner总高
         $head-height: 80px; //头像宽高和中线高度
@@ -160,6 +176,9 @@
                     line-height: $img - 10px;
                     border: 0;
                     font-size: 16px;
+                    &[disabled]{
+                      opacity: 0.5;          
+                    }
                 }
             }
         }

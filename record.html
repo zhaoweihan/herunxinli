@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
     <title>和润心理</title>
 </head>
+
 <body>
     <div id="record">
-        <ul class="recordList">
-            <li>
-                <div class="datetime">2015年3月11日 12:23</div>
+        <ul class="recordList" id="recordList">
+            <li v-for="item in list" :key="item.id">
+                <div class="datetime">{{item.createTime}}</div>
                 <div class="down">
                     <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
                     <div class="words">
-                        <p class="projectName">心理课程</p>
+                        <p class="projectName">{{item.goodsName}}</p>
                         <p class="integral"><em>50</em>积分</p>
-                        <span class="tab">未使用</span>
+                        <span class="tab" :class="{'on':item.status}">{{item.status|status}}</span>
                     </div>
                     <div class="code">
-                        <p>52324</p>
+                        <p>{{item.code}}</p>
                         <span>兑换码</span>
                     </div>
                 </div>
             </li>
-            <li>
+            <!-- <li>
                 <div class="datetime">2015年3月11日 12:23</div>
                 <div class="down">
                     <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
@@ -39,11 +43,20 @@
                         <span>兑换码</span>
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
+        <div class="weui-loadmore" v-show="isShowLoadMore">
+            <i class="weui-loading"></i>
+            <span class="weui-loadmore__tips">正在加载</span>
+        </div>
     </div>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="js/sct.min.js"></script>
+    <script src="js/service.js"></script>
+    <script src="./js/record.js"></script>
 </body>
+
 </html>

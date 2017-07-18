@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>和润心理</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/weui/1.1.1/style/weui.min.css">
+    <link href="https://cdn.bootcss.com/jquery-weui/1.0.1/css/jquery-weui.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
 </head>
+
 <body>
     <div id="index">
+        <div class="loadmore" :class="{'close':isload}">
+            <div class="weui-loadmore">
+                <i class="weui-loading"></i>
+                <span class="weui-loadmore__tips">正在加载</span>
+            </div>
+        </div>
         <div class="banner">
             <div class="left">
-                <div class="imgbox"><img src="./img/atm.jpg"></div>
-                <p class="username">黑色摩天轮</p>
+                <div class="imgbox"><img :src="headImgUrl"></div>
+                <p class="username">{{nickname}}</p>
             </div>
             <div class="right">
-                <h1>42</h1>
+                <h1>{{integral}}</h1>
                 <p>当前积分</p>
             </div>
         </div>
         <!--扫码列表盒子  -->
         <div class="listbox">
             <ul>
-                <li v-for="n in 10">
-                    <div class="imgbox"><img src="./img/atm.jpg"></div>
+                <li v-for="integral in integralRecordList" :key="integral.id">
+                    <div class="imgbox"><img :src="integral.weixinHeadimg"></div>
                     <div class="words">
-                        <p>xxx通过扫描你的二维码加入了和润心里，你获得了xx积分</p>
-                        <p class="datetime">2017-7-17 14:44</p>
+                        <p>{{integral.weixinNickname}}通过扫描你的二维码加入了和润心里，你获得了{{integral.integral}}积分</p>
+                        <p class="datetime">{{integral.createTime}}</p>
                     </div>
                 </li>
             </ul>
@@ -38,23 +48,25 @@
                 <a href="record.html">兑换记录</a>
             </div>
             <ul>
-                <li v-for="n in 5">
-                    <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
+                <li v-for="goods in goodsList" :key="goods.id">
+                    <div class="imgbox"><img :src="baseImageUrl+goods.img" alt="课程图片"></div>
                     <div class="words">
-                        <p class="projectName">心理课程</p>
-                        <p class="integral"><em>50</em>积分</p>
+                        <p class="projectName">{{goods.name}}</p>
+                        <p class="integral"><em>{{goods.integral}}</em>积分</p>
 
                     </div>
-                    <button class="exchangeBtn" type="button">兑 换</button>
+                    <button class="exchangeBtn" type="button" :disabled="integral<goods.integral" @click="exchange(goods.id,goods.integral)">兑 换</button>
                 </li>
             </ul>
         </div>
     </div>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
     <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
     <script src="js/sct.min.js"></script>
     <script src="js/service.js"></script>
     <script src="./js/index.js"></script>
 </body>
+
 </html>
