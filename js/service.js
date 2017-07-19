@@ -1,8 +1,14 @@
 // http://doc.weiwei528.com/hrxl/swagger-ui.html
+//13810225771@163.com
+//xinlirexian309
 (function ($, win) {
     function Server() {
         this.baseUrl = "/hrxl";
-        this.debug = true;
+        this.debug = false;
+        this.wxShareUrl = "http://zwh.natapp4.cc/herunxinli/index.html";
+        this.wxShareTitle = "和润心理扫码赚积分";
+        this.wxShareDes = "扫码并关注，积分送不停。凭借积分可免费兑换课程，免费心理咨询";
+        this.wxShareImg = "http://ocif3scej.bkt.clouddn.com/tz2.jpg";
         this._init();
     }
     Server.prototype = {
@@ -119,6 +125,52 @@
                 return decodeURIComponent(r[2]);
             return null; // 返回参数值
         },
+        //微信sdk 权限验证
+        getSignature: function () {
+            var self = this;
+            self.ajax({
+                url: "/weiXin/getSignature",
+                data: {
+                    url: window.location.href
+                },
+                success: function (result) {
+                    wx.config({
+                        debug: self.debug, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        appId: result.data.appId, // 必填，公众号的唯一标识
+                        timestamp: result.data.timestamp, // 必填，生成签名的时间戳
+                        nonceStr: result.data.noncestr, // 必填，生成签名的随机串
+                        signature: result.data.signature, // 必填，签名，见附录1
+                        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'hideMenuItems'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                    });
+                    // 分享到朋友
+                    wx.onMenuShareAppMessage({
+                        title: self.wxShareTitle, // 分享标题
+                        desc: self.wxShareDes, // 分享描述
+                        link: self.wxShareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: self.wxShareImg, // 分享图标
+                        success: function () {
+                            $.toast("分享成功");
+                            // 用户确认分享后执行的回调函数
+                        }
+                    });
+                    // 分享到朋友圈
+                    wx.onMenuShareTimeline({
+                        title: self.wxShareTitle, // 分享标题
+                        link: self.wxShareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        imgUrl: self.wxShareImg, // 分享图标
+                        success: function () {
+                            $.toast("分享成功");
+                            // 用户确认分享后执行的回调函数
+                        }
+                    });
+                    wx.ready(function () {
+                        wx.hideMenuItems({
+                            menuList: ["menuItem:share:qq", "menuItem:share:weiboApp", "menuItem:share:QZone", "menuItem:openWithSafari", "menuItem:openWithQQBrowser", "menuItem:copyUrl"] // 要显示的菜单项，所有menu项见附录3
+                        });
+                    });
+                }
+            })
+        }
 
     }
     win.Server = Server; //把对象挂载到window下

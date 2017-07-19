@@ -7,9 +7,10 @@ var app = new Vue({
 		integral: 0,
 		integralRecordList: [],
 		goodsList: [],
-		isload:false
+		isload: false
 	},
 	created: function () {
+		$.showLoading();
 		var self = this;
 		//是否有过期时间，如果有 则去比对是否过期.如果过期 则去授权登录.如果没有过期时间则直接授权登录
 		if (localStorage.getItem("timeLimit") && localStorage.getItem("frontUserId")) {
@@ -20,10 +21,13 @@ var app = new Vue({
 			} else { //未过期
 				self.getUserInfo();
 			}
-		} else { //timeLimit或frontUserId 不存在则去 授权登录
+		} else if (server.getUrlParam("code")) { //timeLimit或frontUserId 不存在则判断地址栏里是否有code 如果没有则去授权登录，有则用code请求用户信息
+			self.getUserInfo();
+		} else {
 			localStorage.clear();
 			self.authorization();
 		}
+
 	},
 	methods: {
 		//授权登录
@@ -41,7 +45,7 @@ var app = new Vue({
 				url: "/weiXin/getUserInfo",
 				data: {
 					needExtraData: 1,
-					frontUserId: 1, //localStorage.getItem("frontUserId"),
+					frontUserId: localStorage.getItem("frontUserId"), //localStorage.getItem("frontUserId")
 					code: code
 				},
 				success: function (result) {
@@ -56,11 +60,14 @@ var app = new Vue({
 						element.weixinHeadimg = element.weixinHeadimg.replace("/0", '/96');
 					}, this);
 					self.integralRecordList = result.integralRecordList,
-					self.goodsList = result.goodsList;
-					setTimeout(function(){
-						self.isload=true;
-					},500);
-					
+						self.goodsList = result.goodsList;
+					// 微信SDK 权限校验 和分享配置
+					server.getSignature();
+					setTimeout(function () {
+						$.hideLoading();
+						self.isload = true;
+					}, 500);
+
 				}
 			})
 		},
@@ -80,6 +87,6 @@ var app = new Vue({
 					});
 				}
 			})
-		}
+		},
 	}
 })

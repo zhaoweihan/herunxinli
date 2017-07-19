@@ -1,12 +1,13 @@
 var app = new Vue({
     el: "#record",
     data: {
+        isload: false,
         baseImageUrl: "",
         pageNum: 1,
         pageSize: 8,
         list: [],
         isShowLoadMore: false,
-        loading:false
+        loading: false
     },
     methods: {
         getlist: function () {
@@ -18,6 +19,9 @@ var app = new Vue({
                     pageSize: self.pageSize,
                     frontUserId: localStorage.getItem("frontUserId")
                 },
+                beforeSend: function () {
+                    $.showLoading();
+                },
                 success: function (result) {
                     self.baseImageUrl = result.data.baseImageUrl;
                     if (!result.data.list.length) {
@@ -26,6 +30,10 @@ var app = new Vue({
                     result.data.list.forEach(function (element) {
                         self.list.push(element);
                     }, this);
+                    setTimeout(function () {
+                        self.isload = true;
+                        $.hideLoading();
+                    }, 500)
                     self.loading = false;
                     self.isShowLoadMore = false;
                 }
@@ -33,6 +41,7 @@ var app = new Vue({
         }
     },
     created: function () {
+        server.getSignature();
         this.getlist();
         // var iscrollBox='document.body';
         var self = this;

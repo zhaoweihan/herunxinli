@@ -13,14 +13,15 @@
 
 <body>
     <div id="record">
+        <div class="loadmore" :class="{'close':isload}"></div>
         <ul class="recordList" id="recordList">
             <li v-for="item in list" :key="item.id">
                 <div class="datetime">{{item.createTime}}</div>
                 <div class="down">
-                    <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
+                    <div class="imgbox"><img :src="baseImageUrl+item.img" alt="课程图片"></div>
                     <div class="words">
                         <p class="projectName">{{item.goodsName}}</p>
-                        <p class="integral"><em>50</em>积分</p>
+                        <p class="integral"><em>{{item.integral}}</em>积分</p>
                         <span class="tab" :class="{'on':item.status}">{{item.status|status}}</span>
                     </div>
                     <div class="code">
@@ -29,25 +30,13 @@
                     </div>
                 </div>
             </li>
-            <!-- <li>
-                <div class="datetime">2015年3月11日 12:23</div>
-                <div class="down">
-                    <div class="imgbox"><img src="./img/atm.jpg" alt="课程图片"></div>
-                    <div class="words">
-                        <p class="projectName">心理课程</p>
-                        <p class="integral"><em>50</em>积分</p>
-                        <span class="tab on">已使用</span>
-                    </div>
-                    <div class="code">
-                        <p>52324</p>
-                        <span>兑换码</span>
-                    </div>
-                </div>
-            </li> -->
         </ul>
         <div class="weui-loadmore" v-show="isShowLoadMore">
             <i class="weui-loading"></i>
             <span class="weui-loadmore__tips">正在加载</span>
+        </div>
+        <div class="weui-loadmore weui-loadmore_line" v-if="!list.length">
+            <span class="weui-loadmore__tips">暂无数据</span>
         </div>
     </div>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
