@@ -387,10 +387,18 @@ html body .mint-header .frequency {
   justify-content: center;
   align-items: center;
 }
-#share .qrcodeBox p {
+#share .qrcodeBox P {
+  text-align: center;
+}
+#share .qrcodeBox P button {
   text-align: center;
   font-size: 16px;
   font-weight: bold;
+  background: #e64340;
+  color: #fff;
+  border: 0;
+  padding: 3px 6px;
+  border-radius: 4px;
 }
 @media screen and (max-width: 330px) {
   #share .qrcodeBox {

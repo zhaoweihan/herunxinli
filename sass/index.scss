@@ -313,7 +313,7 @@
             background: #fff;
             display: none;
         }
-        .imgbox{
+        .imgbox {
             width: 100%;
             height: 220px;
             margin-bottom: 10px;
@@ -321,10 +321,18 @@
             justify-content: center;
             align-items: center;
         }
-        p {
+        P {
             text-align: center;
-            font-size: 16px;
-            font-weight: bold;
+            button {
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                background: #e64340;
+                color: #fff;
+                border: 0;
+                padding: 3px 6px;
+                border-radius: 4px;
+            }
         }
     }
     @media screen and (max-width: 330px) {

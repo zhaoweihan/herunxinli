@@ -1,4 +1,10 @@
 (function ($) {
+    $("#shareBtn").on('click', function () {
+        $(".shareMask").show();
+    });
+    $(".shareMask").on('click', function () {
+        $(".shareMask").hide();
+    });
     server.ajax({
         url: "/weiXin/getQrcodeWithParam",
         data: {
@@ -15,7 +21,7 @@
                 src: server.getUrlParam("headImgUrl") //二维码中间的图片
             });
             $("#qrCodeImg").html(convertCanvasToImage($("#qrCode canvas")[0]));
-            
+
         }
     })
 

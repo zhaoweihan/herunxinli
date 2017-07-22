@@ -1,7 +1,6 @@
 var app = new Vue({
 	el: "#index",
 	data: {
-		shareImg:'',
 		baseImageUrl: "",
 		headImgUrl: "",
 		nickname: "",
@@ -91,13 +90,7 @@ var app = new Vue({
 			})
 		},
 		shareTips:function(type){
-			// if(type){
-			// 	this.shareImg='./img/share.png';
-			// }else{
-			// 	this.shareImg='';
-			// }
 			window.location.href='share.html?frontUserId='+localStorage.getItem("frontUserId")+"&headImgUrl="+this.headImgUrl;
-			
 		}
 	}
 })

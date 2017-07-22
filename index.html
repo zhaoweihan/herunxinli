@@ -14,7 +14,6 @@
 <body>
     <div id="index">
         <div class="loadmore" :class="{'close':isload}"></div>
-        <div class="shareMask" :class="{'close':!shareImg}" @click="shareTips(0)"><img :src="shareImg"></div>
         <div class="banner">
             <div class="top">
                 <div class="imgbox"><img :src="headImgUrl"></div>
@@ -23,7 +22,7 @@
             <div class="down">
                 <div class="left">
                     <div class="imgbox" @click="shareTips(1)"><img src="./img/qrCode.png"></div>
-                    <button type="button" @click="shareTips(1)" class="weui-btn weui-btn_mini weui-btn_warn">分享我的二维码</button>
+                    <p>分享我的二维码</p>
                 </div>
                 <div class="right">
                     <h1>{{integral}}</h1>
