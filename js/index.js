@@ -91,11 +91,12 @@ var app = new Vue({
 			})
 		},
 		shareTips:function(type){
-			if(type){
-				this.shareImg='./img/share.png';
-			}else{
-				this.shareImg='';
-			}
+			// if(type){
+			// 	this.shareImg='./img/share.png';
+			// }else{
+			// 	this.shareImg='';
+			// }
+			window.location.href='share.html?frontUserId='+localStorage.getItem("frontUserId")+"&headImgUrl="+this.headImgUrl;
 			
 		}
 	}
