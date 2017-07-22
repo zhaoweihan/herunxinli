@@ -15,247 +15,393 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "微软雅黑", 'sans-serif';
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+}
 
 html {
   min-height: 100%;
   max-width: 640px;
-  margin: 0 auto; }
-  html body {
-    -webkit-overflow-scrolling: touch;
-    max-width: 640px;
-    margin: 0 auto;
-    font-size: 14px;
-    height: 100%;
-    font-size: 14px; }
-    html body button,
-    html body input {
-      -webkit-appearance: none;
-      outline: none; }
-    html body ol,
-    html body ul {
-      list-style: none; }
-    html body a,
-    html body a:hover,
-    html body a:focus {
-      text-decoration: none;
-      color: #333;
-      outline: none; }
-    html body em,
-    html body i {
-      font-style: normal; }
-    html body header.mint-header {
-      background: #3a8af1;
-      font-size: 18px; }
-    html body .clr {
-      clear: both; }
-    html body .bgwhite {
-      background: #fff; }
-    html body .mt-progress-progress {
-      background: #3a8af1; }
-    html body .mint-header .frequency {
-      width: 26px;
-      height: 26px;
-      margin-top: 2px; }
+  margin: 0 auto;
+}
+html body {
+  -webkit-overflow-scrolling: touch;
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 14px;
+  height: 100%;
+  font-size: 14px;
+}
+html body button,
+html body input {
+  -webkit-appearance: none;
+  outline: none;
+}
+html body ol,
+html body ul {
+  list-style: none;
+}
+html body a,
+html body a:hover,
+html body a:focus {
+  text-decoration: none;
+  color: #333;
+  outline: none;
+}
+html body em,
+html body i {
+  font-style: normal;
+}
+html body header.mint-header {
+  background: #3a8af1;
+  font-size: 18px;
+}
+html body .clr {
+  clear: both;
+}
+html body .bgwhite {
+  background: #fff;
+}
+html body .mt-progress-progress {
+  background: #3a8af1;
+}
+html body .mint-header .frequency {
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+}
 
-.loadmore {
+.loadmore,
+.shareMask {
   position: fixed;
   width: 100%;
   height: 100%;
   background: #fff;
-  z-index: 100; }
-  .loadmore.close {
-    display: none; }
+  z-index: 100;
+}
+.loadmore img,
+.shareMask img {
+  width: 100%;
+  height: 100%;
+}
+.loadmore.close,
+.shareMask.close {
+  display: none;
+}
 
 #index .banner {
   overflow: hidden;
   width: 100%;
-  height: 200px;
-  background: url("../img/bg1.png") no-repeat center center/cover; }
-  #index .banner .left,
-  #index .banner .right {
-    width: 50%;
-    height: 100%;
-    float: left;
-    justify-content: center;
-    align-items: center;
-    position: relative; }
-    #index .banner .left .imgbox,
-    #index .banner .right .imgbox {
-      position: absolute;
-      top: 49.5px;
-      left: calc(50% - (80px / 2));
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: url("../img/defaulthead.png") no-repeat center center/cover; }
-      #index .banner .left .imgbox img,
-      #index .banner .right .imgbox img {
-        width: 100%;
-        height: 100%; }
-    #index .banner .left h1,
-    #index .banner .right h1 {
-      position: absolute;
-      top: 54px;
-      width: 100%;
-      color: #fff;
-      font-size: 54px;
-      text-align: center;
-      font-weight: lighter; }
-    #index .banner .left p,
-    #index .banner .right p {
-      position: absolute;
-      color: #fff;
-      font-size: 16px;
-      width: 100%;
-      text-align: center;
-      bottom: 54px; }
-      #index .banner .left p.username,
-      #index .banner .right p.username {
-        bottom: 45px; }
-  #index .banner .left:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 60px;
-    height: 80px;
-    width: 1px;
-    background: #C7C0B0; }
+  height: 240px;
+  background: url("../img/bg1.png") no-repeat center center/cover;
+}
+#index .banner .top,
+#index .banner .down {
+  position: relative;
+  height: 50%;
+  width: 100%;
+}
+#index .banner .top .imgbox {
+  position: absolute;
+  left: calc(50% - 60px / 2);
+  top: 14px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#index .banner .top .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+#index .banner .top p {
+  position: absolute;
+  left: 0;
+  bottom: 14px;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+}
+#index .banner .down .left,
+#index .banner .down .right {
+  width: 50%;
+  height: 100%;
+  float: left;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#index .banner .down .left .imgbox,
+#index .banner .down .right .imgbox {
+  position: absolute;
+  top: 14px;
+  left: calc(50% - (60px / 2));
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  background: url("../img/defaulthead.png") no-repeat center center/cover;
+}
+#index .banner .down .left .imgbox img,
+#index .banner .down .right .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+#index .banner .down .left button,
+#index .banner .down .right button {
+  position: absolute;
+  bottom: 14px;
+  left: 26px;
+  height: 22px;
+  font-size: 14px;
+  line-height: 22px;
+}
+#index .banner .down .left h1,
+#index .banner .down .right h1 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  font-size: 54px;
+  text-align: center;
+  font-weight: lighter;
+}
+#index .banner .down .left p,
+#index .banner .down .right p {
+  position: absolute;
+  color: #fff;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  bottom: 12.5px;
+}
+#index .banner .down .left p.username,
+#index .banner .down .right p.username {
+  bottom: 55px;
+}
+#index .banner .down .left:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15px;
+  height: 90px;
+  width: 1px;
+  background: #C7C0B0;
+}
 #index .listbox {
   width: 92%;
   background: #f5f5f5;
   margin: 15px auto;
   height: 300px;
   overflow-y: auto;
-  overflow-x: hidden; }
-  #index .listbox ul {
-    padding: 10px; }
-    #index .listbox ul li {
-      margin-bottom: 15px;
-      height: 60px; }
-      #index .listbox ul li .imgbox {
-        width: 60px;
-        height: 60px;
-        float: left; }
-        #index .listbox ul li .imgbox img {
-          height: 100%;
-          width: 100%; }
-      #index .listbox ul li .words {
-        height: 60px;
-        width: calc(100% - 60px - 5px);
-        margin-left: 5px;
-        float: right; }
-        #index .listbox ul li .words p {
-          font-size: 13px;
-          margin-bottom: 5px; }
-        #index .listbox ul li .words .datetime {
-          font-size: 12px; }
+  overflow-x: hidden;
+}
+#index .listbox ul {
+  padding: 10px;
+}
+#index .listbox ul li {
+  margin-bottom: 15px;
+  height: 60px;
+}
+#index .listbox ul li .imgbox {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+#index .listbox ul li .imgbox img {
+  height: 100%;
+  width: 100%;
+}
+#index .listbox ul li .words {
+  height: 60px;
+  width: calc(100% - 60px - 5px);
+  margin-left: 5px;
+  float: right;
+}
+#index .listbox ul li .words p {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+#index .listbox ul li .words .datetime {
+  font-size: 12px;
+}
 #index .exchangeList {
   width: 96%;
-  margin: 15px auto; }
-  #index .exchangeList .title {
-    width: 100%;
-    height: 21px;
-    margin-bottom: 10px; }
-    #index .exchangeList .title em {
-      float: left;
-      font-size: 16px; }
-    #index .exchangeList .title a {
-      float: right;
-      color: #3a8af1; }
-  #index .exchangeList ul li {
-    height: 90px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #f5f5f5; }
-    #index .exchangeList ul li .imgbox {
-      width: 80px;
-      height: 80px;
-      float: left; }
-      #index .exchangeList ul li .imgbox img {
-        width: 100%;
-        height: 100%; }
-    #index .exchangeList ul li .words {
-      height: 80px;
-      width: calc(100% - 20px - (80px * 2));
-      margin-left: 10px;
-      float: left; }
-      #index .exchangeList ul li .words .projectName {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333; }
-      #index .exchangeList ul li .words .integral {
-        margin-top: 10px;
-        font-size: 13px; }
-        #index .exchangeList ul li .words .integral em {
-          color: #3a8af1;
-          margin-right: 5px;
-          font-size: 16px; }
-    #index .exchangeList ul li .exchangeBtn {
-      float: right;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: #3a8af1;
-      color: #fff;
-      text-align: center;
-      line-height: 70px;
-      border: 0;
-      font-size: 16px; }
-      #index .exchangeList ul li .exchangeBtn[disabled] {
-        opacity: 0.5; }
+  margin: 15px auto;
+}
+#index .exchangeList .title {
+  width: 100%;
+  height: 21px;
+  margin-bottom: 10px;
+}
+#index .exchangeList .title em {
+  float: left;
+  font-size: 16px;
+}
+#index .exchangeList .title a {
+  float: right;
+  color: #3a8af1;
+}
+#index .exchangeList ul li {
+  height: 90px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f5f5f5;
+}
+#index .exchangeList ul li .imgbox {
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+#index .exchangeList ul li .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+#index .exchangeList ul li .words {
+  height: 80px;
+  width: calc(100% - 20px - (80px * 2));
+  margin-left: 10px;
+  float: left;
+}
+#index .exchangeList ul li .words .projectName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+#index .exchangeList ul li .words .integral {
+  margin-top: 10px;
+  font-size: 13px;
+}
+#index .exchangeList ul li .words .integral em {
+  color: #3a8af1;
+  margin-right: 5px;
+  font-size: 16px;
+}
+#index .exchangeList ul li .exchangeBtn {
+  float: right;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #3a8af1;
+  color: #fff;
+  text-align: center;
+  line-height: 70px;
+  border: 0;
+  font-size: 16px;
+}
+#index .exchangeList ul li .exchangeBtn[disabled] {
+  opacity: 0.5;
+}
 
 #record .recordList {
-  width: 100%; }
-  #record .recordList li {
-    height: 110px;
-    border-bottom: 1px solid #f5f5f5;
-    padding: 5px 10px; }
-    #record .recordList li .datetime {
-      font-size: 12px;
-      color: #666; }
-    #record .recordList li .down .imgbox {
-      float: left;
-      width: 80px;
-      height: 80px; }
-      #record .recordList li .down .imgbox img {
-        width: 100%;
-        height: 100%; }
-    #record .recordList li .down .words {
-      height: 80px;
-      width: calc(100% - 100px - 80px);
-      margin-left: 10px;
-      float: left; }
-      #record .recordList li .down .words .projectName {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333; }
-      #record .recordList li .down .words .integral {
-        font-size: 13px;
-        margin-bottom: 4px; }
-        #record .recordList li .down .words .integral em {
-          color: #3a8af1;
-          margin-right: 5px;
-          font-size: 16px; }
-      #record .recordList li .down .words .tab {
-        width: 60px;
-        height: 26px;
-        display: block;
-        background: #32b16c;
-        color: #fff;
-        text-align: center;
-        line-height: 26px; }
-        #record .recordList li .down .words .tab.on {
-          background: #bfc2c0; }
-    #record .recordList li .down .code {
-      width: 90px;
-      float: right; }
-      #record .recordList li .down .code p {
-        font-size: 30px;
-        margin-bottom: 3px; }
-      #record .recordList li .down .code span {
-        display: block;
-        width: 100%;
-        text-align: center; }
+  width: 100%;
+}
+#record .recordList li {
+  height: 110px;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 5px 10px;
+}
+#record .recordList li .datetime {
+  font-size: 12px;
+  color: #666;
+}
+#record .recordList li .down .imgbox {
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+#record .recordList li .down .imgbox img {
+  width: 100%;
+  height: 100%;
+}
+#record .recordList li .down .words {
+  height: 80px;
+  width: calc(100% - 100px - 80px);
+  margin-left: 10px;
+  float: left;
+}
+#record .recordList li .down .words .projectName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+#record .recordList li .down .words .integral {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+#record .recordList li .down .words .integral em {
+  color: #3a8af1;
+  margin-right: 5px;
+  font-size: 16px;
+}
+#record .recordList li .down .words .tab {
+  width: 60px;
+  height: 26px;
+  display: block;
+  background: #32b16c;
+  color: #fff;
+  text-align: center;
+  line-height: 26px;
+}
+#record .recordList li .down .words .tab.on {
+  background: #bfc2c0;
+}
+#record .recordList li .down .code {
+  width: 90px;
+  float: right;
+}
+#record .recordList li .down .code p {
+  font-size: 30px;
+  margin-bottom: 3px;
+}
+#record .recordList li .down .code span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+#share {
+  background: url("../img/sharebg.png") no-repeat center center/100% 100%;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#share .qrcodeBox {
+  position: absolute;
+  left: calc(50% - 110px);
+  bottom: 14px;
+  width: 220px;
+}
+#share .qrcodeBox .qrcode {
+  width: 100%;
+  height: 220px;
+  background: #fff;
+  display: none;
+}
+#share .qrcodeBox .imgbox {
+  width: 100%;
+  height: 220px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#share .qrcodeBox p {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+@media screen and (max-width: 330px) {
+  #share .qrcodeBox {
+    left: calc(50% - 95px);
+    bottom: 0;
+    width: 190px;
+  }
+  #share .qrcodeBox .imgbox {
+    height: 190px;
+    margin-bottom: 5px;
+  }
+}
 
 /*# sourceMappingURL=index.css.map */

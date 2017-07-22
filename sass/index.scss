@@ -1,10 +1,15 @@
 @import './reset';
-.loadmore {
+.loadmore,
+.shareMask {
     position: fixed;
     width: 100%;
     height: 100%;
     background: #fff;
     z-index: 100;
+    img {
+        width: 100%;
+        height: 100%;
+    }
     &.close {
         display: none;
     }
@@ -12,63 +17,101 @@
 
 #index {
     .banner {
-        $height: 200px; //banner总高
-        $head-height: 80px; //头像宽高和中线高度
+        $height: 240px; //banner总高
+        $head-height: 60px; //头像宽高和中线高度
         overflow: hidden;
         width: 100%;
         height: $height;
         background: url("../img/bg1.png") no-repeat center center/ cover;
-        .left,
-        .right {
-            width: 50%;
-            height: 100%;
-            float: left; // @include flex;
-            justify-content: center;
-            align-items: center;
+        .top,
+        .down {
             position: relative;
+            height: 50%;
+            width: 100%;
+        }
+        .top {
             .imgbox {
                 position: absolute;
-                top: ($height - $head-height - 21px)/2;
-                left: calc(50% - (#{$head-height} / 2));
+                left: calc(50% - #{$head-height} / 2);
+                top: ($height / 2 - $head-height - 22px - 10px) / 2;
                 width: $head-height;
                 height: $head-height;
                 border-radius: 50%;
                 overflow: hidden;
-                background: url('../img/defaulthead.png') no-repeat center center/ cover;
                 img {
                     width: 100%;
                     height: 100%;
                 }
             }
-            h1 {
-                position: absolute;
-                top: 54px;
-                width: 100%;
-                color: #fff;
-                font-size: 54px;
-                text-align: center;
-                font-weight: lighter;
-            }
             p {
                 position: absolute;
-                color: #fff;
-                font-size: 16px;
-                width: 100%;
+                left: 0;
+                bottom: ($height / 2 - $head-height - 22px - 10px) / 2;
                 text-align: center;
-                bottom: 54px;
-                &.username {
-                    bottom: $height/4 - 5px;
-                }
+                width: 100%;
+                color: #fff;
             }
         }
-        .left:after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: ($height - $head-height)/2;
-            height: $head-height;
-            width: 1px;
-            background: #C7C0B0;
+        .down {
+            .left,
+            .right {
+                width: 50%;
+                height: 100%;
+                float: left; // @include flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                .imgbox {
+                    position: absolute;
+                    top: ($height / 2 - $head-height - 22px - 10px) / 2;
+                    left: calc(50% - (#{$head-height} / 2));
+                    width: $head-height;
+                    height: $head-height;
+                    overflow: hidden;
+                    background: url('../img/defaulthead.png') no-repeat center center/ cover;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                button {
+                    position: absolute;
+                    bottom: ($height / 2 - $head-height - 22px - 10px) / 2;
+                    left: 26px;
+                    height: 22px;
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+                h1 {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    color: #fff;
+                    font-size: 54px;
+                    text-align: center;
+                    font-weight: lighter;
+                }
+                p {
+                    position: absolute;
+                    color: #fff;
+                    font-size: 16px;
+                    width: 100%;
+                    text-align: center;
+                    bottom: ($height / 2 - 70px - 25px) / 2;
+                    &.username {
+                        bottom: $height/4 - 5px;
+                    }
+                }
+            }
+            .left:after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 15px;
+                height: 90px;
+                width: 1px;
+                background: #C7C0B0;
+            }
         }
     } //列表
     .listbox {
@@ -248,6 +291,50 @@
                         text-align: center;
                     }
                 }
+            }
+        }
+    }
+}
+
+// 分享
+#share {
+    background: url('../img/sharebg.png') no-repeat center center/ 100% 100%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .qrcodeBox {
+        position: absolute;
+        left: calc(50% - 110px);
+        bottom: 14px;
+        width: 220px;
+        .qrcode {
+            width: 100%;
+            height: 220px;
+            background: #fff;
+            display: none;
+        }
+        .imgbox{
+            width: 100%;
+            height: 220px;
+            margin-bottom: 10px;
+            @include flex;
+            justify-content: center;
+            align-items: center;
+        }
+        p {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+    @media screen and (max-width: 330px) {
+        .qrcodeBox {
+            left: calc(50% - 95px);
+            bottom: 0;
+            width: 190px;
+            .imgbox {
+                height: 190px;
+                margin-bottom: 5px;
             }
         }
     }

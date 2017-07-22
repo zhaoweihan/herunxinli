@@ -1,14 +1,16 @@
 // http://doc.weiwei528.com/hrxl/swagger-ui.html
 //13810225771@163.com
 //xinlirexian309
+
+//window.location.host+"/herunxinli/share.html?frontUserId="+localStorage.getItem("frontUserId")+"&headImgUrl="+localStorage.getItem("headImgUrl")
 (function ($, win) {
     function Server() {
         this.baseUrl = "/hrxl";
         this.debug = false;
-        this.wxShareUrl = "http://zwh.natapp4.cc/herunxinli/index.html";
-        this.wxShareTitle = "和润心理扫码赚积分";
-        this.wxShareDes = "扫码并关注，积分送不停。凭借积分可免费兑换课程，免费心理咨询";
-        this.wxShareImg = "http://ocif3scej.bkt.clouddn.com/tz2.jpg";
+        this.wxShareUrl = win.location.protocol+"//"+win.location.host+"/herunxinli/share.html?frontUserId="+localStorage.getItem("frontUserId")+"&headImgUrl="+localStorage.getItem("headImgUrl").replace("/96","/46");
+        this.wxShareTitle = "危机干预大会全国培训（第二次）+阳明能量棋实操培训课程";
+        this.wxShareDes = "危机干预大会全国培训（第二次）+阳明能量棋实操培训课程";
+        this.wxShareImg = "http://ot18ayapm.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722131844.jpg";
         this._init();
     }
     Server.prototype = {

@@ -1,6 +1,7 @@
 var app = new Vue({
 	el: "#index",
 	data: {
+		shareImg:'',
 		baseImageUrl: "",
 		headImgUrl: "",
 		nickname: "",
@@ -54,6 +55,7 @@ var app = new Vue({
 					localStorage.setItem("frontUserId", result.frontUserId);
 					localStorage.setItem("timeLimit", Math.floor(new Date().getTime() / 1000) + 604800);
 					self.headImgUrl = result.img.replace("/0", '/96');
+					localStorage.setItem("headImgUrl",self.headImgUrl);
 					self.nickname = result.nickname;
 					self.integral = result.integral;
 					result.integralRecordList.forEach(function (element) {
@@ -88,5 +90,13 @@ var app = new Vue({
 				}
 			})
 		},
+		shareTips:function(type){
+			if(type){
+				this.shareImg='./img/share.png';
+			}else{
+				this.shareImg='';
+			}
+			
+		}
 	}
 })

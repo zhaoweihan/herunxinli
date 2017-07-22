@@ -41,7 +41,19 @@ var app = new Vue({
         }
     },
     created: function () {
-        server.getSignature();
+        var self = this;
+        //是否有过期时间，如果有 则去比对是否过期.如果过期 则去授权登录.如果没有过期时间则直接授权登录
+        if (localStorage.getItem("timeLimit") && localStorage.getItem("frontUserId")) {
+            var nowDatetime = Math.floor(new Date().getTime() / 1000);
+            if (nowDatetime > localStorage.getItem("timeLimit")) { //过期
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        } else {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+        server.getSignature();//微信接口权限校验
         this.getlist();
         // var iscrollBox='document.body';
         var self = this;

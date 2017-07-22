@@ -13,15 +13,22 @@
 
 <body>
     <div id="index">
-         <div class="loadmore" :class="{'close':isload}"></div> 
+        <div class="loadmore" :class="{'close':isload}"></div>
+        <div class="shareMask" :class="{'close':!shareImg}" @click="shareTips(0)"><img :src="shareImg"></div>
         <div class="banner">
-            <div class="left">
+            <div class="top">
                 <div class="imgbox"><img :src="headImgUrl"></div>
                 <p class="username">{{nickname}}</p>
             </div>
-            <div class="right">
-                <h1>{{integral}}</h1>
-                <p>当前积分</p>
+            <div class="down">
+                <div class="left">
+                    <div class="imgbox"><img src="./img/qrCode.png"></div>
+                    <button type="button" @click="shareTips(1)" class="weui-btn weui-btn_mini weui-btn_warn">分享我的二维码</button>
+                </div>
+                <div class="right">
+                    <h1>{{integral}}</h1>
+                    <p>当前积分</p>
+                </div>
             </div>
         </div>
         <!--扫码列表盒子  -->
