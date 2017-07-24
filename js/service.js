@@ -5,10 +5,10 @@
 //window.location.host+"/herunxinli/share.html?frontUserId="+localStorage.getItem("frontUserId")+"&headImgUrl="+localStorage.getItem("headImgUrl")
 (function ($, win) {
     function Server() {
-        this.sharePathname='/wap-hrxl';
+        this.sharePathname = '/wap-hrxl';
         this.baseUrl = "/hrxl";
         this.debug = false;
-        this.wxShareUrl = win.location.protocol+"//"+win.location.host+this.sharePathname+"/share.html?frontUserId="+localStorage.getItem("frontUserId")+"&headImgUrl="+localStorage.getItem("headImgUrl");
+        this.wxShareUrl = win.location.protocol + "//" + win.location.host + this.sharePathname + "/share.html?frontUserId=" + localStorage.getItem("frontUserId") + "&headImgUrl=" + localStorage.getItem("headImgUrl");
         this.wxShareTitle = "危机干预大会全国培训（第二次）+阳明能量棋实操培训课程";
         this.wxShareDes = "危机干预大会全国培训（第二次）+阳明能量棋实操培训课程";
         this.wxShareImg = "http://ot18ayapm.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170722131844.jpg";
@@ -131,14 +131,15 @@
         //微信sdk 权限验证
         getSignature: function (wxShareUrl) {
             var self = this;
-            var shareUrl=null;
-            if(wxShareUrl){
-                shareUrl=wxShareUrl
-            }else{
-                shareUrl=self.wxShareUrl;
+            var shareUrl = null;
+            if (wxShareUrl) {
+                shareUrl = wxShareUrl
+            } else {
+                shareUrl = self.wxShareUrl;
             }
             self.ajax({
                 url: "/weiXin/getSignature",
+                async: false,
                 data: {
                     url: window.location.href
                 },

@@ -5,7 +5,7 @@ var app = new Vue({
 		headImgUrl: "",
 		nickname: "",
 		integral: 0,
-		exchangedRecordCount:0,
+		exchangedRecordCount: 0,
 		integralRecordList: [],
 		goodsList: [],
 		isload: false
@@ -54,24 +54,30 @@ var app = new Vue({
 					self.baseImageUrl = result.baseImageUrl;
 					localStorage.setItem("frontUserId", result.frontUserId);
 					localStorage.setItem("timeLimit", Math.floor(new Date().getTime() / 1000) + 604800);
-					self.headImgUrl = result.img.replace("/0", '/96');//头像
-					localStorage.setItem("headImgUrl",self.headImgUrl);
-					self.nickname = result.nickname;//昵称
-					self.integral = result.integral;//积分
-					self.exchangedRecordCount=result.exchangedRecordCount;//积分兑换记录数
+					self.headImgUrl = result.img.replace("/0", '/96'); //头像
+					localStorage.setItem("headImgUrl", self.headImgUrl);
+					self.nickname = result.nickname; //昵称
+					self.integral = result.integral; //积分
+					self.exchangedRecordCount = result.exchangedRecordCount; //积分兑换记录数
 					result.integralRecordList.forEach(function (element) {
 						element.weixinHeadimg = element.weixinHeadimg.replace("/0", '/96');
 					}, this);
 					self.integralRecordList = result.integralRecordList,
 						self.goodsList = result.goodsList;
 					// 微信SDK 权限校验 和分享配置
-					var shareUrl = window.location.protocol+"//"+window.location.host+server.sharePathname+"/share.html?frontUserId="+result.frontUserId+"&headImgUrl="+self.headImgUrl;
+					var shareUrl = window.location.protocol + "//" + window.location.host + server.sharePathname + "/share.html?frontUserId=" + result.frontUserId + "&headImgUrl=" + self.headImgUrl;
 					server.getSignature(shareUrl);
 					setTimeout(function () {
 						$.hideLoading();
 						self.isload = true;
 					}, 500);
 
+				},
+				error: function (code, msg) {
+					if(code==40002){
+						localStorage.clear();
+						self.authorization();
+					}
 				}
 			})
 		},
@@ -92,8 +98,8 @@ var app = new Vue({
 				}
 			})
 		},
-		shareTips:function(type){
-			window.location.href='share.html?frontUserId='+localStorage.getItem("frontUserId")+"&headImgUrl="+this.headImgUrl;
+		shareTips: function (type) {
+			window.location.href = 'share.html?frontUserId=' + localStorage.getItem("frontUserId") + "&headImgUrl=" + this.headImgUrl;
 		}
 	}
 })
