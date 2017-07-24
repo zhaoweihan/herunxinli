@@ -1,10 +1,12 @@
-(function ($) {
+(function ($,win) {
     $("#shareBtn").on('click', function () {
         $(".shareMask").show();
     });
     $(".shareMask").on('click', function () {
         $(".shareMask").hide();
     });
+    server.wxShareUrl=win.location.protocol+"//"+win.location.host+server.sharePathname+"/share.html?frontUserId="+server.getUrlParam("frontUserId")+"&headImgUrl="+server.getUrlParam("headImgUrl");
+    server.getSignature();//微信权限校验
     server.ajax({
         url: "/weiXin/getQrcodeWithParam",
         data: {
@@ -31,4 +33,4 @@
         console.log(image);
         return image;
     }
-})(jQuery)
+})(jQuery,window)
