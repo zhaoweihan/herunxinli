@@ -46,7 +46,7 @@
         <div class="exchangeList">
             <div class="title">
                 <em>积分兑换</em>
-                <a href="record.html">兑换记录</a>
+                <a href="record.html" v-if="exchangedRecordCount">兑换记录</a>
             </div>
             <ul>
                 <li v-for="goods in goodsList" :key="goods.id">

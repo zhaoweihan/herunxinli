@@ -5,6 +5,7 @@ var app = new Vue({
 		headImgUrl: "",
 		nickname: "",
 		integral: 0,
+		exchangedRecordCount:0,
 		integralRecordList: [],
 		goodsList: [],
 		isload: false
@@ -53,10 +54,11 @@ var app = new Vue({
 					self.baseImageUrl = result.baseImageUrl;
 					localStorage.setItem("frontUserId", result.frontUserId);
 					localStorage.setItem("timeLimit", Math.floor(new Date().getTime() / 1000) + 604800);
-					self.headImgUrl = result.img.replace("/0", '/96');
+					self.headImgUrl = result.img.replace("/0", '/96');//头像
 					localStorage.setItem("headImgUrl",self.headImgUrl);
-					self.nickname = result.nickname;
-					self.integral = result.integral;
+					self.nickname = result.nickname;//昵称
+					self.integral = result.integral;//积分
+					self.exchangedRecordCount=result.exchangedRecordCount;//积分兑换记录数
 					result.integralRecordList.forEach(function (element) {
 						element.weixinHeadimg = element.weixinHeadimg.replace("/0", '/96');
 					}, this);
