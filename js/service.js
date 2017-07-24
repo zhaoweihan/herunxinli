@@ -152,30 +152,31 @@
                         signature: result.data.signature, // 必填，签名，见附录1
                         jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'hideMenuItems'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                     });
-                    // 分享到朋友
-                    wx.onMenuShareAppMessage({
-                        title: self.wxShareTitle, // 分享标题
-                        desc: self.wxShareDes, // 分享描述
-                        link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                        imgUrl: self.wxShareImg, // 分享图标
-                        success: function () {
-                            $.toast("分享成功");
-                            // 用户确认分享后执行的回调函数
-                        }
-                    });
-                    // 分享到朋友圈
-                    wx.onMenuShareTimeline({
-                        title: self.wxShareTitle, // 分享标题
-                        link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                        imgUrl: self.wxShareImg, // 分享图标
-                        success: function () {
-                            $.toast("分享成功");
-                            // 用户确认分享后执行的回调函数
-                        }
-                    });
+
                     wx.ready(function () {
                         wx.hideMenuItems({
                             menuList: ["menuItem:share:qq", "menuItem:share:weiboApp", "menuItem:share:QZone", "menuItem:openWithSafari", "menuItem:openWithQQBrowser", "menuItem:copyUrl"] // 要显示的菜单项，所有menu项见附录3
+                        });
+                        // 分享到朋友
+                        wx.onMenuShareAppMessage({
+                            title: self.wxShareTitle, // 分享标题
+                            desc: self.wxShareDes, // 分享描述
+                            link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                            imgUrl: self.wxShareImg, // 分享图标
+                            success: function () {
+                                $.toast("分享成功");
+                                // 用户确认分享后执行的回调函数
+                            }
+                        });
+                        // 分享到朋友圈
+                        wx.onMenuShareTimeline({
+                            title: self.wxShareTitle, // 分享标题
+                            link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                            imgUrl: self.wxShareImg, // 分享图标
+                            success: function () {
+                                $.toast("分享成功");
+                                // 用户确认分享后执行的回调函数
+                            }
                         });
                     });
                 }
