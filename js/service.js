@@ -129,8 +129,14 @@
             return null; // 返回参数值
         },
         //微信sdk 权限验证
-        getSignature: function () {
+        getSignature: function (wxShareUrl) {
             var self = this;
+            var shareUrl=null;
+            if(wxShareUrl){
+                shareUrl=wxShareUrl
+            }else{
+                shareUrl=self.wxShareUrl;
+            }
             self.ajax({
                 url: "/weiXin/getSignature",
                 data: {
@@ -149,7 +155,7 @@
                     wx.onMenuShareAppMessage({
                         title: self.wxShareTitle, // 分享标题
                         desc: self.wxShareDes, // 分享描述
-                        link: self.wxShareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: self.wxShareImg, // 分享图标
                         success: function () {
                             $.toast("分享成功");
@@ -159,7 +165,7 @@
                     // 分享到朋友圈
                     wx.onMenuShareTimeline({
                         title: self.wxShareTitle, // 分享标题
-                        link: self.wxShareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                        link: shareUrl, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                         imgUrl: self.wxShareImg, // 分享图标
                         success: function () {
                             $.toast("分享成功");
