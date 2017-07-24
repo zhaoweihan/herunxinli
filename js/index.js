@@ -65,7 +65,8 @@ var app = new Vue({
 					self.integralRecordList = result.integralRecordList,
 						self.goodsList = result.goodsList;
 					// 微信SDK 权限校验 和分享配置
-					server.getSignature();
+					var shareUrl = window.location.protocol+"//"+window.location.host+server.sharePathname+"/share.html?frontUserId="+result.frontUserId+"&headImgUrl="+self.headImgUrl;
+					server.getSignature(shareUrl);
 					setTimeout(function () {
 						$.hideLoading();
 						self.isload = true;
