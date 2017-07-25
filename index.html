@@ -31,7 +31,7 @@
             </div>
         </div>
         <!--扫码列表盒子  -->
-        <div class="listbox">
+        <div class="listbox" v-show="integralRecordList.length">
             <ul>
                 <li v-for="integral in integralRecordList" :key="integral.id">
                     <div class="imgbox"><img :src="integral.weixinHeadimg"></div>
