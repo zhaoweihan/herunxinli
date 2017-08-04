@@ -5,7 +5,7 @@
 //window.location.host+"/herunxinli/share.html?frontUserId="+localStorage.getItem("frontUserId")+"&headImgUrl="+localStorage.getItem("headImgUrl")
 (function ($, win) {
     function Server() {
-        this.sharePathname = '/herunxinli';
+        this.sharePathname = '/wap-hrxl';
         this.baseUrl = "/hrxl";
         this.debug = false;
         this.wxShareUrl = win.location.protocol + "//" + win.location.host + this.sharePathname + "/share.html?frontUserId=" + localStorage.getItem("frontUserId") + "&headImgUrl=" + localStorage.getItem("headImgUrl");
