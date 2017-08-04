@@ -50,11 +50,12 @@
             </div>
             <ul>
                 <li v-for="goods in goodsList" :key="goods.id">
-                    <div class="imgbox"><img :src="baseImageUrl+goods.img" alt="课程图片"></div>
+                    <div class="imgbox"><a :href="goods.url"><img :src="baseImageUrl+goods.img" alt="课程图片"></a></div>
                     <div class="words">
-                        <p class="projectName">{{goods.name}}</p>
-                        <p class="integral"><em>{{goods.integral}}</em>积分</p>
-
+                        <a :href="goods.url">
+                            <p class="projectName">{{goods.name}}</p>
+                            <p class="integral"><em>{{goods.integral}}</em>积分</p>
+                        </a>
                     </div>
                     <button class="exchangeBtn" type="button" :disabled="integral<goods.integral" @click="exchange(goods.id,goods.integral)">兑 换</button>
                 </li>
